@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng Nhập Quản Trị</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 350px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    input::placeholder {
+      color: #eee;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00c6ff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0072ff;
+    }
+    .error {
+      text-align: center;
+      margin-top: 10px;
+      color: #ffdddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Đăng Nhập Admin</h2>
+    <input type="text" id="username" placeholder="Tên đăng nhập">
+    <input type="password" id="password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng Nhập</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+  <script>
+    const admin = { username: "admin", password: "123456" };
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const error = document.getElementById('errorMsg');
+      if (user === admin.username && pass === admin.password) {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "dashboard.html";
+      } else {
+        error.textContent = "Sai tài khoản hoặc mật khẩu!";
+      }
+    }
+    if (localStorage.getItem("loggedIn") === "true") {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
